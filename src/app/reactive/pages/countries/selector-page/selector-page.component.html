@@ -1,0 +1,60 @@
+<h1 class="mt-3">Selectores anidados</h1>
+<hr>
+
+<form [formGroup]="myForm">
+
+    <!-- Region -->
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Continente:</label>
+            <select class="form-control" formControlName="continente">
+                <option value="">-- Seleccione --</option>
+                @for (region of regiones; track $index) {
+                  <option [value]="region">{{ region }}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+    <!-- Countries -->
+    @if (this.paisesPorContinente.length > 0) {
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">País:</label>
+            <select class="form-control" formControlName="pais">
+                <option value="">-- Seleccione --</option>
+                @for (pais of paisesPorContinente; track $index) {
+                  <option [value]="pais.cca3">{{ pais.name.common }}</option>
+                }
+            </select>
+        </div>
+    </div>
+    }
+
+    <!-- Fronteras -->
+    @if (this.fronterasPorPais.length > 0) {
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Fronteras:</label>
+            <select class="form-control" formControlName="fronteras">
+                <option value="">-- Seleccione la frontera --</option>
+                @for (frontera of fronterasPorPais; track $index) {
+                    <option [value]="frontera">{{ frontera }}</option>
+                  }
+            </select>
+        </div>
+    </div>
+    }
+
+
+</form>
+
+<hr>
+<h3>Formulario</h3>
+<code>
+  {{ myForm.value | json }}
+</code>
+<p>
+    is form valid: {{ myForm.valid }}
+</p>

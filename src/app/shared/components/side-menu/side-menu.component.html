@@ -1,0 +1,21 @@
+<h2>Menu</h2>
+<hr>
+
+<h3>Reactive</h3>
+<ul class="list-group">
+    @for (item of menuReactive; track $index) {
+        <li class="list-group-item" 
+            [routerLink]="[item.url]" 
+            routerLinkActive="active" >{{item.label}}</li>
+    }
+
+</ul>
+<h3 class="mt-5">Validaciones</h3>
+<ul class="list-group">
+    @for (item of menuAuth; track $index) {
+        <li class="list-group-item" 
+            [routerLink]="[item.url]" 
+            routerLinkActive="active" >{{item.label}}</li>
+    }
+
+</ul>
